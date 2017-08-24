@@ -61,3 +61,23 @@ Starting    cosbench-api_    [ERROR]
 Error: Could not find or load main class org.eclipse.equinox.launcher.Main
 ```
 解决办法：
+参考网上这段话
+>Hello Ravi,
+>The v0.4.2.0 hasn’t been released yet, I assume you are cloning v0.4.2.0 code branch. In this case, you’d build the source code in eclipse, and run “pack.sh” to pack a binary package. Or, more easy way is to download the latest binary package (the .zip file) directly from https://github.com/intel-cloud/cosbench/releases/tag/v0.4.1.0.
+>
+>-yaguang
+
+方法1:下载了V0.4.1.0的zip，解压后运行sh start-all.sh命令，运行成功
+
+另外一段话也可参考：
+>The root cause for the error you have seen is required bundles can't get loaded. Generally, I prefer user to use binary packages on https://github.com/intel-cloud/cosbench/releases.
+>
+>Recently, I saw a few cases from end user, they are trying to run cosbench after git cloning, either starting scripts by going to releases/ folder, or running pack.sh script (your case ), they are all unexpected. Normally, when you really want to run cosbench by git cloning, it suggests potentially you may want to modify some code, so  you need establish one development environment, the instructions are recorded in BUILD.md. then you need export all bundles in eclipse, after that, you can run pack.sh to generate your own package.
+>
+>The forum includes two sub folders, one is for user, another is for developer. If you have development related questions, I suggest you post it on cosbench-developer.
+>
+>-yaguang
+
+方法二：自己构建开发环境，修改其中部分代码。
+
+代码导入参考BUILD.md，其中介绍了开发环境和debug环境的部署，本人按照development environment方式配置后，确实大部分的错误被修复，但仍有很多错误，这里我还没解决。
