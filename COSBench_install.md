@@ -56,3 +56,8 @@ Starting    cosbench-core-web_    [ERROR]
 ...........................................................
 Starting    cosbench-api_    [ERROR]
 ```
+其中日志log/driver-boot.log显示为：
+```
+Error: Could not find or load main class org.eclipse.equinox.launcher.Main
+```
+解决办法：
