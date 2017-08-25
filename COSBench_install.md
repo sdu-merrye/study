@@ -81,3 +81,25 @@ Error: Could not find or load main class org.eclipse.equinox.launcher.Main
 方法二：自己构建开发环境，修改其中部分代码。
 
 代码导入参考BUILD.md，其中介绍了开发环境和debug环境的部署，本人按照development environment方式配置后，确实大部分的错误被修复，但仍有很多错误，这里我还没解决。
+
+3.检查controller和drivers
+```
+swift@controller:~/0.4.1.0$ netstat -an | grep LISTEN | grep 19088
+swift@controller:~/0.4.1.0$ netstat -an | grep LISTEN | grep 18088
+```
+4.测试安装
+```
+swift@controller:~/0.4.1.0$ sh cli.sh submit conf/workload-config.xml
+swift@controller:~/0.4.1.0$ sh cli.sh info
+```
+打开http://127.0.0.1:19088/controller/index.html 以查看monitor状态，由于这里我安装的ubuntu16.04是最小化安装的，所以要安装图形界面
+
+
+可以选的：workload可以被取消，COBench也可以用下面的语句停止
+```
+sh cli.sh cancel w1
+sh stop-all.sh
+```
+
+5.部署cosbench
+将上述<version>.zip文件拷贝到其他cosbench要执行的节点上，重复上述步骤进行安装
