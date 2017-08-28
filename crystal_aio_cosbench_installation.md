@@ -32,12 +32,18 @@ echo -e "$IP_ADRESS \t controller" >> /etc/hosts
 git clone https://github.com/openstack/storlets >> /tmp/crystal_aio.log 2>&1
 pip install storlets/ >> /tmp/crystal_aio.log 2>&1
 cd storlets
-./install_libs.sh >> /tmp/crystal_aio.log 2>&1
-mkdir /home/docker_device/scripts >> /tmp/crystal_aio.log 2>&1
-chown swift:swift /home/docker_device/scripts >> /tmp/crystal_aio.log 2>&1
-cp scripts/restart_docker_container /home/docker_device/scripts/ >> /tmp/crystal_aio.log 2>&1
-cp scripts/send_halt_cmd_to_daemon_factory.py /home/docker_device/scripts/ >> /tmp/crystal_aio.log 2>&1
-chown root:root /home/docker_device/scripts/* >> /tmp/crystal_aio.log 2>&1
-chmod 04755 /home/docker_device/scripts/* >> /tmp/crystal_aio.log 2>&1
 ```
-这里
+这里，后面的先不要了。
+执行一次
+```
+./install_aio.sh
+```
+(4) 修改storlet中的链接
+- src/Java/build.xml中的http://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/json-simple/json_simple-1.1.jar 替换为国内链接http://www.docjar.com/jar/json_simple-1.1.jar
+- 将install/storlets/role/docker_base_jre_image/tasks/ubuntu_16.04_jre8.yml中的json-simple的链接也替换为http://www.docjar.com/jar/json_simple-1.1.jar
+- 同上，在ubuntu_16.04_jre8.yml中将http://www.slf4j.org/dist/slf4j-1.7.7.tar.gz 的链接替换为http://mirrors.ibiblio.org/ovirt/pub/ovirt-3.5/src/slf4j/slf4j-1.7.7.tar.gz
+
+(5) 将前面执行过的代码从install_aio.sh中删除，执行后面剩余的代码
+```
+./install_aio.sh
+```
