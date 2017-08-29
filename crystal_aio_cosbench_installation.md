@@ -6,6 +6,7 @@
 git clone https://github.com/Crystal-SDS/INSTALLATION.git
 chmod 777 install_aio.sh
 ```
+修改/etc/sudoers,将swift加入
 (2) 先单独执行
 ```
 #!/bin/bash
@@ -47,3 +48,52 @@ cd storlets
 ```
 ./install_aio.sh
 ```
+执行成功。
+(6) 测试swift
+测试遇到错误如下：
+```
+root@controller:~# . crystal-openrc
+root@controller:~# swift list
+Account GET failed: http://controller:8080/v1/AUTH_e9e2647ff41f41d88e7794991cf6f9de?format=json 500 Internal Error   An error occurred
+Failed Transaction ID: txd805958fd6b544c191903-0059a4c4a8
+```
+解决：
+```
+vim /etc/swift/account-server.conf
+#bind_ip = 127.0.0.1
+bind_ip = 192.168.0.1（你的ip）
+swift-init all restart
+```
+查看swfit list或swift stat可以看到执行成功
+
+(7) 查看网站
+在宿主机上访问controller/horizon即可看到登陆界面
+用户名和密码都为manager
+
+## 2.上传metrics和filter
+(1) 在宿主机中下载metric和filter-sample.git
+```
+[root@localhost Downloads]# git clone https://github.com/Crystal-SDS/metric-middleware.git
+[root@localhost Downloads]# git clone https://github.com/Crystal-SDS/filter-samples.git
+```
+(2) 打包和上传filter
+```
+$cd storlet_compression/
+$mkdir lib
+$cp /home/crystal/strolets/Engine/SCommon/bin/SCommon.jar ./lib/
+$ant bulid
+```
+用crystal网页进行上传fitler和metrics
+上传fitler的class name直接就是前面的class name，相关设置如下
+![image](https://github.com/sdu-merrye/study/blob/master/picture/crystal_metric_1.png)
+![image](https://github.com/sdu-merrye/study/blob/master/picture/crystal_metric_2.png)
+
+但是进行上传报错，metrics和filter都是这样.
+
+尝试:
+安装liberasurecode及相关库
+sudo pip install jupyter
+liberasurecode安装：
+https://caden16.github.io/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/ubuntu16.04%E6%90%AD%E5%BB%BAopenstack-swift%E5%8D%95%E6%9C%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/
+
+重新执行./install_aio.sh

@@ -46,3 +46,9 @@ sudo apt-get --purge remove liborbit2
 7.进入图形界面：startx
 
 8.退出图形桌面：ctrl + alt + backspace
+
+9.默认启动字符界面
+编辑文件 /etc/default/grub
+把 GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”
+改成GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash text”
+然后再运行”sudo update-grub”即可。
