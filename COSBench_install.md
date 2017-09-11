@@ -1,6 +1,27 @@
-# COSbench的安装及遇到的错误
-安装过程参考自cosbenchUserGuide.pdf
+# Cosbench命令及安装
 
+## <font color="0099ff">cosbench命令</font>
+
+### 启动cosbench
+记住要unset http_proxy
+```
+unset http_proxy
+sh start-all.sh
+sh stop-all.sh
+
+sh start-driver.sh
+sh start-controller.sh
+sh stop-driver.sh
+sh stop-controller.sh
+```
+### 提交workload
+```
+sh cli.sh submit conf/workload-config.xml
+sh cli.sh info
+sh cli.sh cancel w1
+```
+## <font color="0099ff">COSbench的安装及遇到的错误</font>
+安装过程参考自cosbenchUserGuide.pdf
 1.安装jre和curl
 ```
 sudo apt-get update

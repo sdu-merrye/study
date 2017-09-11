@@ -22,3 +22,11 @@ vim /root/.ssh/known_hosts 删除其中的3.241的IP
 
 ## 2. erasurecode.c:30:18: fatal error: zlib.h: No such file or directory
 sudo apt-get install zlib1g-dev
+
+## 3.在crystal中用cosbench测试时，遇到http 1.1 503 service unavailable错误
+解决方法：
+可能是由于swift的loopback设备空间不足的问题
+首先
+```
+sudo losetup /dev/loop0
+sudo dd if=/dev/zero bs=1MiB of=/path/to/file conv=notrunc oflag=append count=xxx

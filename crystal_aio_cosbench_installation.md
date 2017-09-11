@@ -7,6 +7,7 @@ git clone https://github.com/Crystal-SDS/INSTALLATION.git
 chmod 777 install_aio.sh
 ```
 修改/etc/sudoers,将swift加入
+
 (2) 先单独执行
 ```
 #!/bin/bash
@@ -26,6 +27,7 @@ IP_ADRESS=$(hostname -I | tr -d '[:space:]')
 echo -e "$IP_ADRESS \t controller" >> /etc/hosts
 ```
 将主机名改为controller之后重启，使之生效，否则后面会报sudo cann't resolv host ubuntu之类的错误。
+<font color="red">将controller添加到无密码访问</font>
 
 (3) 注释到
 ```
@@ -45,10 +47,12 @@ cd storlets
 - 同上，在ubuntu_16.04_jre8.yml中将http://www.slf4j.org/dist/slf4j-1.7.7.tar.gz 的链接替换为http://mirrors.ibiblio.org/ovirt/pub/ovirt-3.5/src/slf4j/slf4j-1.7.7.tar.gz
 
 (5) 将前面执行过的代码从install_aio.sh中删除，执行后面剩余的代码
+<font color="red">注意，要在install_aio.sh中修改一下路径，最好将crystal-openrc复制到~下</font>
 ```
 ./install_aio.sh
 ```
 执行成功。
+
 (6) 测试swift
 测试遇到错误如下：
 ```
@@ -88,12 +92,12 @@ $ant bulid
 ![image](https://github.com/sdu-merrye/study/blob/master/picture/crystal_metric_1.png)
 ![image](https://github.com/sdu-merrye/study/blob/master/picture/crystal_metric_2.png)
 
-但是进行上传报错，metrics和filter都是这样.
+但是进行上传报错，metrics和filter都是这样.后来作者更新了脚本以后就好了。(+_+)
 
-尝试:
+>尝试:
 安装liberasurecode及相关库
 sudo pip install jupyter
 liberasurecode安装：
 https://caden16.github.io/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/ubuntu16.04%E6%90%AD%E5%BB%BAopenstack-swift%E5%8D%95%E6%9C%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/
 
-重新执行./install_aio.sh
+>重新执行./install_aio.sh
