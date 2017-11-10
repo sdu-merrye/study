@@ -56,6 +56,7 @@ route add default gw 192.168.3.241
 |object1|2G|30G||10.0.2.31|object1|123|
 |object2|2G|30G||10.0.2.32|object2|123|
 |block1|2G|20G||10.0.2.33|object2|123|
+其中object1和object2分别有2个磁盘/dev/sdb和/dev/sdc，大小为10G.
 
 配置如下：
 ```
@@ -125,3 +126,5 @@ neutron = 123
 
 admin,demo的密码基本都是123
 除了mysql，rabbit等保持文档一致，比如KEYSTONE_DBPASS
+
+>完成日期：2017年9月8日
