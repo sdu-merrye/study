@@ -1,4 +1,4 @@
-[TOC]
+[toc]
 
 # changelog
 ## V17.10:Logical Volumes
